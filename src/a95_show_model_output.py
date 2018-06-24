@@ -180,14 +180,16 @@ for str_line in input_file:
 	
 	###zhi neng cang wei 0 begin
 	days_after_ipo = int(col[days_after_ipo_col_no])
-	gupiao_pb = float(col[pb_col_no])
-	gupiao_minpb2 = float(col[minpb2_col_no])
 	zhi_neng_cang_wei=0
 	max_cang_wei_per_stock=40000
-	zhi_neng_cang_wei=max_cang_wei_per_stock-(gupiao_pb-gupiao_minpb2)*5000
-	zhi_neng_cang_wei=zhi_neng_cang_wei*(days_after_ipo/2402)
-	zhi_neng_cang_wei=zhi_neng_cang_wei/10000
+	print("debug 01: %s"%max_cang_wei_per_stock,ratio_of_pb_to_minpb2)
+	zhi_neng_cang_wei=max_cang_wei_per_stock-(ratio_of_pb_to_minpb2-0.8)/0.1*5000
+	print("debug 02: %s"%zhi_neng_cang_wei)
+	zhi_neng_cang_wei=zhi_neng_cang_wei*(days_after_ipo*1.0/2402)
+	zhi_neng_cang_wei=zhi_neng_cang_wei*1.0/10000
 	zhi_neng_cang_wei=round(zhi_neng_cang_wei,1)
+	if zhi_neng_cang_wei<=0:
+		zhi_neng_cang_wei=0
 	str_zhi_neng_cang_wei=str(zhi_neng_cang_wei)+'w'
 	
 	###zhi neng cang wei 0 end
@@ -226,7 +228,7 @@ for str_line in input_file:
 					print(str_merged_line)
 					
 					my_k = my_k + 1
-					if my_k > 100:
+					if my_k > 100:#
 						break
 	
 	
