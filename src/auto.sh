@@ -1,2 +1,2 @@
-cd /root/lianghuajiazhi/website/backend/src
+cd /home/dc2-user/lianghuajiazhi-backend/src
 ./all.sh

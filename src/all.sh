@@ -16,4 +16,11 @@ python a90_show_risk_level.py
 ./middle_3jlt.sh
 ./low_3jlt.sh
 
+python csv2json.py top100.csv
+python csv2json.py top100_high_all.csv
+python csv2json.py top100_middle_all.csv
+python csv2json.py top100_low_all.csv
+python csv2json.py top100_middle_3jlt.csv
+python csv2json.py top100_low_3jlt.csv
+
 ./copydata_to_website_gupiaoapp2.sh

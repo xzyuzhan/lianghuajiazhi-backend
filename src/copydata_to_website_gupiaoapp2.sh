@@ -7,5 +7,7 @@ python csv_to_html.py top100_low_all.csv top100_low_all.html
 python csv_to_html.py top100_middle_all.csv top100_middle_all.html
 python csv_to_html.py top100_high_all.csv top100_high_all.html
 
-cp  top100* /var/lib/tomcat8/webapps/gupiaoapp2/gupiaodata/
+cp  top100* /home/dc2-user/lianghuajiazhi-frontend-html/html/gupiaodata/
+
+cp  top100* /home/dc2-user/lianghuajiazhi-frontend-html/html/gupiaoapp2/gupiaodata/
 

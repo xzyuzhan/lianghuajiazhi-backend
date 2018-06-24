@@ -125,7 +125,7 @@ def gen_minpb2_and_save(str_gupiao_code):
 				
 	if not os.path.exists(str_gupiao_dcw_filename):
 		print("access:",url_3,".............");
-		urllib.request.urlretrieve(url_3, str_gupiao_dcw_filename)
+		#urllib.request.urlretrieve(url_3, str_gupiao_dcw_filename)#this line is useful ,but too slow.please use it when need 
 		#time.sleep(0.1)
 	
 	cur_pb="999"
