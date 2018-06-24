@@ -7,6 +7,6 @@ csv_to_html.py top100_low_all.csv top100_low_all.html
 csv_to_html.py top100_middle_all.csv top100_middle_all.html
 csv_to_html.py top100_high_all.csv top100_high_all.html
 
-copy /y top100* "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\gupiaoapp2\gupiaodata\"
-copy /y top100* "C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\ROOT\gupiaodata\"
+
 copy /y top100* "C:\nginx-1.14.0\html\gupiaodata\"
+copy /y top100* "C:\nginx-1.14.0\html\gupiaoapp2\gupiaodata\"

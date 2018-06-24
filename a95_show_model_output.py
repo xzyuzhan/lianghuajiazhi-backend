@@ -131,10 +131,11 @@ name_col_no=2;
 turnoverratio_col_no=10
 pb_col_no=13;
 minpb2_col_no=18;
+days_after_ipo_col_no=19;
 
 col_name_risk_level="risk_level"
 col_name_ratio_of_pb_to_minpb2="pb_vs_minpb2"
-
+col_name_zhi_neng_cang_wei="zncw0"
 col_name_3jlt_name="the_3jlt_name"
 
 
@@ -149,10 +150,12 @@ k=0
 
 #print("--debug3")
 print("-----------------reuslt----------------")
+#only out the first 100 line
+my_k=1
 for str_line in input_file:
 	#print("--debug4")
-	
-	#print(line)
+
+	print(str_line)
 	col = str_line.split(",")
 	#print(col)
 	gupiao_code = str(col[code_col_no])
@@ -175,11 +178,27 @@ for str_line in input_file:
 	str_risk_level=str(risk_level)
 	str_ratio_of_pb_to_minpb2=str(ratio_of_pb_to_minpb2)
 	
+	###zhi neng cang wei 0 begin
+	days_after_ipo = int(col[days_after_ipo_col_no])
+	gupiao_pb = float(col[pb_col_no])
+	gupiao_minpb2 = float(col[minpb2_col_no])
+	zhi_neng_cang_wei=0
+	max_cang_wei_per_stock=40000
+	zhi_neng_cang_wei=max_cang_wei_per_stock-(gupiao_pb-gupiao_minpb2)*5000
+	zhi_neng_cang_wei=zhi_neng_cang_wei*(days_after_ipo/2402)
+	zhi_neng_cang_wei=zhi_neng_cang_wei/10000
+	zhi_neng_cang_wei=round(zhi_neng_cang_wei,1)
+	str_zhi_neng_cang_wei=str(zhi_neng_cang_wei)+'w'
+	
+	###zhi neng cang wei 0 end
+	
+	
+	
 	if str_merged_header=="":
 		#print(str_header)
 		
 		#str_merged_header="%s,%s,%s"%(str_header,col_name_risk_level,col_name_ratio_of_pb_to_minpb2)
-		str_merged_header="%s,%s,%s,%s"%(col_name_risk_level,col_name_ratio_of_pb_to_minpb2,col_name_3jlt_name,str_header)
+		str_merged_header="%s,%s,%s,%s,%s"%(col_name_risk_level,col_name_ratio_of_pb_to_minpb2,col_name_3jlt_name,col_name_zhi_neng_cang_wei,str_header)
 
 		output_file.write(str_merged_header)	
 		print(str_merged_header)
@@ -194,7 +213,7 @@ for str_line in input_file:
 		if gupiao_code==row_table_3jlt[gupiaocode_col_n]:
 			seeked_3jltname=row_table_3jlt[name3jlt_col_n]
 	
-	str_merged_line="%s,%s,%s,%s"%(str_risk_level,str_ratio_of_pb_to_minpb2,seeked_3jltname,str_line.strip())
+	str_merged_line="%s,%s,%s,%s,%s"%(str_risk_level,str_ratio_of_pb_to_minpb2,seeked_3jltname,str_zhi_neng_cang_wei,str_line.strip())
 	
 	
 	
@@ -205,6 +224,10 @@ for str_line in input_file:
 					output_file.write(str_merged_line)
 					output_file.write("\n")
 					print(str_merged_line)
+					
+					my_k = my_k + 1
+					if my_k > 100:
+						break
 	
 	
 	k=k+1

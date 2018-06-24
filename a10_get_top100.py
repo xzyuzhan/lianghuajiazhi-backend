@@ -41,8 +41,8 @@ header=",".join(header_cols);
 
 print(header);
 output_file_top.write(header)
-
-for i in range(0,100):
+#for i in range(0,1000):
+for i in range(0,800):
 #for i in range(0,len(table_sorted)):
 	table_sorted[i][0]=i+1;
 	row=table_sorted[i]

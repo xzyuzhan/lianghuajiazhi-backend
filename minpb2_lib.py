@@ -130,7 +130,7 @@ def gen_minpb2_and_save(str_gupiao_code):
 	
 	cur_pb="999"
 	if os.path.exists(str_gupiao_dcw_filename):
-		input_dcw_file1=codecs.open(str_gupiao_dcw_filename, 'r','gb2312')
+		input_dcw_file1=codecs.open(str_gupiao_dcw_filename, 'r','gbk')#gb2312 -> gbk
 		#to seek the line like this:<td>市净率：<span id="gt13_2">1.11</span></td>
 		str_pattern1="<span id=\"gt13_2\">"
 		str_pattern2="</span>"
@@ -247,7 +247,7 @@ def gen_minpb2_and_save(str_gupiao_code):
 		date_row_n=0
 		bv_row_n=18
 
-		input_file2=codecs.open(str_gupiao_history_report_filename, 'r','gb2312')
+		input_file2=codecs.open(str_gupiao_history_report_filename, 'r','gbk')#try gb2312 -> gbk?
 		k=0
 
 		for line in input_file2:
@@ -374,7 +374,7 @@ def gen_minpb2_and_save(str_gupiao_code):
 		#print(pb_history)
 
 		#access file1
-		input_file1=codecs.open(str_gupiao_history_price_filename, 'r','gb2312')
+		input_file1=codecs.open(str_gupiao_history_price_filename, 'r','gbk')#try gb2312 -> gbk?
 
 		str_input_file1_header=input_file1.readline()
 		strlist_input_file1_header=str_input_file1_header.split(",")
@@ -446,6 +446,13 @@ def gen_minpb2_and_save(str_gupiao_code):
 		print("[7 year pb history]")
 		print("date          pb")
 		print("----------    ----------")
+		hpb_prefix_date_history=[]
+		for one_item in date_history:
+			hpb_prefix_date_history.append('pb'+one_item)
+		print("--date_history")
+		print(hpb_prefix_date_history)
+		print("----------    ----------")
+		
 		k=0
 		for one_item in date_history:
 			if pb_history[k]=="-":
@@ -489,7 +496,7 @@ def gen_minpb2_and_save(str_gupiao_code):
 		code=str_gupiao_code
 
 		output_file=codecs.open(str_gupiao_minpb2_filename,'w+','utf-8')
-		output_file_header=["code","minpb1","minpb2","days_after_ipo"]+date_history
+		output_file_header=["code","minpb1","minpb2","days_after_ipo"]+hpb_prefix_date_history#date_history -> hpb_prefix_date_history
 		print(output_file_header)
 		str_output_file_header=",".join(output_file_header)
 		output_file.write(str_output_file_header)
